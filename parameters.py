@@ -84,7 +84,8 @@ arrays = {
     "run_off": np.array([ ]),
     "interception": np.array([ ]),
     "s_max": np.array([ ]),
-    "delta_s": np.array([ ])}
+    "delta_s": np.array([ ]),
+    "cumulative_infiltration": np.array([ ])}
 
 # model/parameters.py
 
@@ -141,4 +142,4 @@ delta_s = np.array([ ])
 interception_threshold = np.array([ ])
 evap_baresoil = np.array([ ])
 evap_baresoil_cont_to_s = np.array([ ])
-
+cumulative_infiltration = np.array([ ])

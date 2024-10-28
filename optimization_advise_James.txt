@@ -1,0 +1,21 @@
+Set Parameters
+
+Read Data in Init
+
+Simulation
+--> Pass parameters to modelAsAFunction(a, b, c, ...)
+
+e.g.
+
+def model(sfc, n, L_GWlocal, Kh_GWlocal, ...):
+    init arrays
+    run loops
+    y
+    s
+    recharge
+
+    ..
+
+    write to dataframe (s, recharge, y)
+    
+    return y

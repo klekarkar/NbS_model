@@ -43,6 +43,7 @@ class InfiltrationModel:
         self.S = S
         self.chi = (S**2) / (2 * Ks**2)
 
+    #dimensionless time t*
     def dimensionless_time(self, t):
         return (2 * self.Ks**2 * t) / self.S**2
 

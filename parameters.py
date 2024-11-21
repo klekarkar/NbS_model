@@ -76,7 +76,7 @@ arrays = {
     "tR_out": np.array([ ]),
     "water_level_wetland": np.array([ ]),
     "water_table_depth": np.array([ ]),
-    "WSC": np.array([ ]),
+    "AWC": np.array([ ]),
     "y": np.array([ ]),
     "y_rech": np.array([ ]),
     "y_WL": np.array([ ]),
@@ -130,7 +130,7 @@ tR_local = np.array([ ])
 tR_out = np.array([ ])
 water_level_wetland = np.array([ ])
 water_table_depth = np.array([ ])
-WSC = np.array([ ])
+AWC = np.array([ ])
 y = np.array([ ])
 y_rech = np.array([ ])
 y_WL = np.array([ ])

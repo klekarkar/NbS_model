@@ -9,7 +9,7 @@ Kh_GWreg = 1
 L_GWlocal = 3300
 L_GWout = 3000
 L_GWreg = 3e5
-M = 0.9
+M = 0.7
 MeanRootDepth = 2000
 kevap_BS = 0.8
 kv_WL = 1.5
@@ -25,8 +25,8 @@ ref_elev_WL = 10.9 * 1000 #elevation of the wetland in mm
 r_P = 0.2
 sfc = 0.50
 s_initial = sfc * 0.5
-s_molecular_suction = 0.10
-s_sce = 0.10
+s_molecular_suction = 0.20
+s_sce = 0.20
 s_scs = 0.50
 
 # Interception parameters

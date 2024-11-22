@@ -20,7 +20,7 @@ relative_humidity = pd.read_csv(data_dir + "Boechout_mswx_relative_humidity.csv"
 #The soil heat flux G is ignored in this model
 delta=compute_slope_of_vapor_pressure_curve(climate_data["mean_daily_temperature"])
 gamma=compute_psychrometric_constant(altitude)
-vapor_p_deficit=vapor_pressure_deficit(climate_data["max_daily_temperature"], climate_data["min_daily_temperature"], climate_data["mean_daily_temperature"], relative_humidity["relative_humidity"][0:len(climate_data)])
+vapor_p_deficit=vapor_pressure_deficit(climate_data["max_daily_temperature"], climate_data["min_daily_temperature"], relative_humidity["relative_humidity"][0:len(climate_data)])
 net_radiation=climate_data["global_radiation"]*3.6 #convert from kwh/m2/day to MJ/m2/day
 G=0
 soil_evap_numerator=0.408*delta*(net_radiation-G)+gamma*(900/(273+climate_data["mean_daily_temperature"]))*climate_data["wind_speed"]*vapor_p_deficit

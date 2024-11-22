@@ -9,7 +9,7 @@ Kh_GWreg = 1
 L_GWlocal = 3300
 L_GWout = 3000
 L_GWreg = 3e5
-M = 0.9
+M = 0.7
 MeanRootDepth = 2000
 kevap_BS = 0.8
 kv_WL = 1.5
@@ -25,8 +25,8 @@ ref_elev_WL = 10.9 * 1000 #elevation of the wetland in mm
 r_P = 0.2
 sfc = 0.50
 s_initial = sfc * 0.5
-s_molecular_suction = 0.10
-s_sce = 0.10
+s_molecular_suction = 0.20
+s_sce = 0.20
 s_scs = 0.50
 
 # Interception parameters
@@ -76,7 +76,7 @@ arrays = {
     "tR_out": np.array([ ]),
     "water_level_wetland": np.array([ ]),
     "water_table_depth": np.array([ ]),
-    "WSC": np.array([ ]),
+    "AWC": np.array([ ]),
     "y": np.array([ ]),
     "y_rech": np.array([ ]),
     "y_WL": np.array([ ]),
@@ -84,7 +84,8 @@ arrays = {
     "run_off": np.array([ ]),
     "interception": np.array([ ]),
     "s_max": np.array([ ]),
-    "delta_s": np.array([ ])}
+    "delta_s": np.array([ ]),
+    "cumulative_infiltration": np.array([ ])}
 
 # model/parameters.py
 
@@ -129,7 +130,7 @@ tR_local = np.array([ ])
 tR_out = np.array([ ])
 water_level_wetland = np.array([ ])
 water_table_depth = np.array([ ])
-WSC = np.array([ ])
+AWC = np.array([ ])
 y = np.array([ ])
 y_rech = np.array([ ])
 y_WL = np.array([ ])
@@ -141,4 +142,4 @@ delta_s = np.array([ ])
 interception_threshold = np.array([ ])
 evap_baresoil = np.array([ ])
 evap_baresoil_cont_to_s = np.array([ ])
-
+cumulative_infiltration = np.array([ ])

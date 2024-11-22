@@ -25,21 +25,20 @@ def compute_psychrometric_constant(elevation):
     Returns:
         float: psychrometric constant in kPa/C
     """
-    P= 101.3 * ((293 - 0.0065 * elevation) / 293) ** 5.26
+    P= 101.3 * ((293 - (0.0065 * elevation)) / 293) ** 5.26
 
-    gamma=0.000665 * P
+    gamma = 0.665 * 10**-3 * P #kPa/C
     return gamma
 
-def compute_saturation_vapor_pressure(Tmean):
+def compute_saturation_vapor_pressure(T):
     """Computes the saturation vapor pressure (es) in kPa
     Args:
         T (float): temperature in degrees Celsius
     Returns:
         float: saturation vapor pressure in kPa
     """
-    es=0.6108 * np.exp((17.27 * Tmean) / (Tmean + 237.3))
+    es=0.6108 * np.exp((17.27 * T) / (T + 237.3))
     return es
-
 
 def dew_point_temperature(Tmean, RH):
     """Computes the dew point temperature (Td) in degrees Celsius
@@ -56,7 +55,7 @@ def dew_point_temperature(Tmean, RH):
     td = b*(np.log(RH / 100) + a * Tmean / (b + Tmean)) / (a - np.log(RH / 100) - a * Tmean / (b + Tmean))
     return td
 
-def vapor_pressure_deficit(Tmax, Tmin, Tmean, RHmean):
+def vapor_pressure_deficit(Tmax, Tmin, RHmean):
     """Computes the vapor pressure deficit (VPD) in kPa
     Args:
         Tmax (float): maximum temperature in degrees Celsius
@@ -68,7 +67,7 @@ def vapor_pressure_deficit(Tmax, Tmin, Tmean, RHmean):
     es_tmax = compute_saturation_vapor_pressure(Tmax)
     es_tmin = compute_saturation_vapor_pressure(Tmin)
     es=(es_tmax + es_tmin) / 2
-    ea = compute_saturation_vapor_pressure(dew_point_temperature(Tmean, RHmean))
+    ea = es * RHmean / 100
 
     return es - ea
 
@@ -198,7 +197,7 @@ def compute_penman_monteith_ETo(latitude, day_of_year, elevation, Tmax, Tmin, Tm
     
     # Calculate actual vapor pressure using dew point temperature
     Td = dew_point_temperature(Tmean, RHmean)
-    ea = compute_saturation_vapor_pressure(Td)
+    ea = es * RHmean / 100
     
     # Calculate psychrometric constant
     gamma = compute_psychrometric_constant(elevation)

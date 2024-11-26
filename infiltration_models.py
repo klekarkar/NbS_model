@@ -13,7 +13,7 @@ Ali et al., (2016) Green-Ampt approximations: A comprehensive analysis also prov
 http://dx.doi.org/10.1016/j.jhydrol.2016.01.065
 
 """
-
+#Ks and S values for different soil types in mm/h and mm/h^0.5 respectively
 soil_data = {
     "Sand": {"Ks": 200.0, "S": 116.6},
     "Loamy sand": {"Ks": 61.0, "S": 64.4},

@@ -3,10 +3,10 @@ import numpy as np
 
 # Model parameters
 A1 = 38755
-Kh_GWlocal = 200
+Kh_GWlocal = 2000
 Kh_GWout = 1800
 Kh_GWreg = 1
-L_GWlocal = 3300
+L_GWlocal = 15000
 L_GWout = 3000
 L_GWreg = 3e5
 M = 0.7
@@ -15,7 +15,6 @@ kevap_BS = 0.8
 kv_WL = 1.5
 kveg = 1.1
 kvegsat = 0.9
-LAI = 4.5
 n = 0.20
 phi_GW = n
 phi_GWlocal = n
@@ -28,6 +27,23 @@ s_initial = sfc * 0.5
 s_molecular_suction = 0.20
 s_sce = 0.20
 s_scs = 0.50
+
+alpha_tall_canopy = 0.8
+alpha_short_canopy = 1.26 #short veg. and bare soil
+frac_tall_canopy = 0.5
+frac_short_canopy = 0.3
+frac_bare_soil = 0.2
+beta = 0.07
+s_fc = 0.321
+s_sat = 0.482
+s_wp = 0.137
+Ks=12.19 #Saturated hydraulic conductivity in mm/h (Silt Loam) -->>> from SPAW model
+S=34.3 #Sorptivity in mm/h^0.5
+
+LAI = 3.5
+tau = 0.8 #or 0.2 a parameter accounting for the development of vegetation over the year (vegetation optical depth).
+
+
 
 # Interception parameters
 a = 0.50
@@ -86,7 +102,18 @@ arrays = {
     "s_max": np.array([ ]),
     "delta_s": np.array([ ]),
     "cumulative_infiltration": np.array([ ]),
-    "total_evap": np.array([ ])}
+    "total_evap": np.array([ ]),
+    "E_stress_tc": np.array([ ]),
+    "E_stress_sc": np.array([ ]),
+    "E_stress_bs": np.array([ ]),
+    "evap_actual_tc": np.array([ ]),
+    "evap_actual_sc": np.array([ ]),
+    "evap_actual_bs": np.array([ ]),
+    "total_evap": np.array([ ]),
+    "infil": np.array([ ]),
+    "sm": np.array([ ]),
+    "perco": np.array([ ])
+    }
 
 
 # model/parameters.py
@@ -146,3 +173,13 @@ evap_baresoil = np.array([ ])
 evap_baresoil_cont_to_s = np.array([ ])
 cumulative_infiltration = np.array([ ])
 total_evap = np.array([ ])
+E_stress_tc = np.array([ ]) # Evaporation stress tall canopy
+E_stress_sc = np.array([ ]) # Evaporation stress short canopy
+E_stress_bs = np.array([ ]) # Evaporation stress
+evap_actual_tc = np.array([ ])
+evap_actual_sc = np.array([ ])
+evap_actual_bs = np.array([ ])
+total_evap = np.array([ ])
+infil = np.array([ ])
+sm = np.array([ ])
+perco = np.array([ ])

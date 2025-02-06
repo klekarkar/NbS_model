@@ -71,7 +71,7 @@ def simulate_soil_water_balance(
     else:
         remaining_PET = pET_k.iloc[time] - interception[time]
 
-        # Step 3: Calculate evaporation stress for different components
+        # Step 3: Calculate evaporation stress for tall canopy, short canopy, and bare soil
         E_stress_tc = max(0, 1 - ((s_fc - sm[time - 1]) / (s_fc - s_wp))**2)
         E_stress_sc = max(0, 0.5 * (1 - np.sqrt((s_fc - sm[time - 1]) / (s_fc - s_wp)) + tau / 0.8))
         E_stress_bs = max(0, 1 - np.sqrt((s_fc - sm[time - 1]) / (s_fc - s_wp)))
@@ -86,7 +86,7 @@ def simulate_soil_water_balance(
         evap_actual_sc[time] = pot_evap_sc * E_stress_sc
         evap_actual_bs[time] = pot_evap_bs * E_stress_bs
 
-        # Step 4: Calculate total ET
+        # Calculate total ET
         total_evap[time] = (
             interception[time] + evap_actual_tc[time] + evap_actual_sc[time] + evap_actual_bs[time]
         )
@@ -95,7 +95,7 @@ def simulate_soil_water_balance(
     # Calculate available water capacity
     AWC[time] = max(0, (s_fc - sm[time - 1]) * soil_depth)
 
-    # Create an instance of the infiltration model
+    # Create an instance of the infiltration model (imported from infiltration_models.py)
     infiltration_model = InfiltrationModel(Ks, S)
 
     # Calculate cumulative daily infiltration in mm
@@ -116,3 +116,6 @@ def simulate_soil_water_balance(
     sm[time] = max(s_wp, sm[time])  # Prevent negative soil moisture
 
     return interception, total_evap, evap_actual_tc, evap_actual_sc, evap_actual_bs, AWC, infil, perco, sm
+
+
+# Loop through each time step and simulate the water balance

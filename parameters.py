@@ -19,8 +19,8 @@ n = 0.20
 phi_GW = n
 phi_GWlocal = n
 phi_GWout = n
-ref_elev = 13.42 * 1000 #elevation of the catchment in mm
-ref_elev_WL = 10.9 * 1000 #elevation of the wetland in mm
+ref_elev_upstream = 13.42 * 1000 #elevation of the catchment in mm
+ref_elev_downstream = 10.9 * 1000 #elevation of the wetland in mm
 r_P = 0.2
 sfc = 0.50
 s_initial = sfc * 0.5
@@ -42,7 +42,6 @@ S=34.3 #Sorptivity in mm/h^0.5
 
 LAI = 3.5
 tau = 0.8 #or 0.2 a parameter accounting for the development of vegetation over the year (vegetation optical depth).
-
 
 
 # Interception parameters
@@ -87,7 +86,7 @@ arrays = {
     "R_us": np.array([ ]),
     "s": np.array([ ]),
     "water_table_elevation": np.array([ ]),
-    "wetland_wl_elev": np.array([ ]),
+    "downstrean_wl_elev": np.array([ ]),
     "tR_local": np.array([ ]),
     "tR_out": np.array([ ]),
     "water_level_wetland": np.array([ ]),
@@ -112,9 +111,14 @@ arrays = {
     "total_evap": np.array([ ]),
     "infil": np.array([ ]),
     "sm": np.array([ ]),
-    "perco": np.array([ ])
-    }
+    "perco": np.array([ ]),
+    'upstream_wl_elev': np.array([ ]),
+    'downstream_wl_elev': np.array([ ]),
+    'y_ds': np.array([ ]),
 
+
+    
+    }
 
 # model/parameters.py
 
@@ -153,8 +157,8 @@ recharge_cont_to_y = np.array([ ])
 Rlinear = np.array([ ])
 R_us = np.array([ ])
 s = np.array([ ])
-water_table_elevation = np.array([ ])
-wetland_wl_elev = np.array([ ])
+upstream_wl_elev = np.array([ ])
+downstream_wl_elev = np.array([ ])
 tR_local = np.array([ ])
 tR_out = np.array([ ])
 water_level_wetland = np.array([ ])
@@ -162,7 +166,7 @@ water_table_depth = np.array([ ])
 AWC = np.array([ ])
 y = np.array([ ])
 y_rech = np.array([ ])
-y_WL = np.array([ ])
+y_ds = np.array([ ])
 net_p_input = np.array([ ])
 run_off = np.array([ ])
 interception = np.array([ ])

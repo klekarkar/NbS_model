@@ -35,6 +35,7 @@ class InfiltrationModel:
     Input: 
         Ks (saturated hydraulic conductivity in mm/h),
         S (sorptivity in mm/h^0.5 or mm/day^0.5)
+        t (time in hours)
     Output:
         Cumulative infiltration in mm over time t
     """
@@ -94,11 +95,13 @@ class InfiltrationModel:
         return (self.S**2 / (2 * self.Ks)) * (t_star + 2.693 * np.log(1 + 0.527 * np.sqrt(t_star)))
 
     def get_model(self, model_name, t):
-        model_func = self.models.get(model_name)
+        key = model_name.lower().replace(" ", "_")
+        model_func = self.models.get(key)
         if model_func:
             return model_func(t)
         else:
             raise ValueError(f"Model '{model_name}' not found. Available models: {list(self.models.keys())}")
+
 
     @property
     def models(self):
